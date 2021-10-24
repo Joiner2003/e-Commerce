@@ -1,0 +1,328 @@
+<!-- 
+* Copyright 2018 Carlos Eduardo Alfaro Orellana
+  https://www.youtube.com/c/CarlosAlfaro007
+-->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Inventory</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='css/normalize.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='css/sweetalert2.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='css/material.min.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='css/material-design-iconic-font.min.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='css/main.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='css/jquery.mCustomScrollbar.css') }}"
+    />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+      window.jQuery ||
+        document.write('<script src="js/jquery-1.11.2.min.js"><\/script>');
+    </script>
+    <script src="{{ url_for('static',filename='js/material.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/sweetalert2.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+  </head>
+  <body>
+    <!-- navLateral -->
+    <section class="full-width navLateral">
+      <div class="full-width navLateral-bg btn-menu"></div>
+      <div class="full-width navLateral-body">
+        <div class="full-width navLateral-body-logo text-center tittles">
+          <i class="zmdi zmdi-close btn-menu"></i> INVENTARIO MAZDA
+        </div>
+        <figure class="full-width navLateral-body-tittle-menu">
+          <div>
+            <img
+              src="{{ url_for('static',filename='assets/img/avatar-male.png') }}"
+              alt="Avatar"
+              class="img-responsive"
+            />
+          </div>
+          <figcaption>
+            <span>
+              {{session['nombre']+' '+session['apellidos']}}<br />
+              <small>{{session['rol']}}</small>
+            </span>
+          </figcaption>
+        </figure>
+        <nav class="full-width">
+            <ul class="full-width list-unstyle menu-principal">
+              <li class="full-width">
+                <a href="/dashboard" class="full-width">
+                  <div class="navLateral-body-cl">
+                    <i class="zmdi zmdi-view-dashboard"></i>
+                  </div>
+                  <div class="navLateral-body-cr">DASHBOARD</div>
+                </a>
+              </li>
+              <li class="full-width divider-menu-h"></li>
+  
+              {% if session['rol'] != 'FINALUSER' %}
+              <li class="full-width divider-menu-h"></li>
+              <li class="full-width">
+                  <a href="#!" class="full-width btn-subMenu">
+                    <div class="navLateral-body-cl">
+                      <i class="zmdi zmdi-accounts"></i>
+                    </div>
+                    <div class="navLateral-body-cr">GESTION DE USUARIOS</div>
+                    <span class="zmdi zmdi-chevron-left"></span>
+                  </a>
+                  <ul class="full-width menu-principal sub-menu-options">
+                    <li class="full-width">
+                      <a href="/signin" class="full-width">
+                        <div class="navLateral-body-cl">
+                          <i class="zmdi zmdi-account-add"></i>
+                        </div>
+                        <div class="navLateral-body-cr">CREAR USUARIO</div>
+                      </a>
+                    </li>
+                    <li class="full-width">
+                      <a href="/verusuarios" class="full-width">
+                        <div class="navLateral-body-cl">
+                          <i class="zmdi zmdi-account"></i>
+                        </div>
+                        <div class="navLateral-body-cr">VER USUARIOS</div>
+                      </a>
+                    </li>
+                    <li class="full-width">
+                      <a href="#" class="full-width">
+                        <div class="navLateral-body-cl">
+                          <i class="zmdi zmdi-edit"></i>
+                        </div>
+                        <div class="navLateral-body-cr">EDITAR USUARIO</div>
+                      </a>
+                    </li>
+                    <li class="full-width">
+                      <a href="#" class="full-width">
+                        <div class="navLateral-body-cl">
+                          <i class="zmdi zmdi-close"></i>
+                        </div>
+                        <div class="navLateral-body-cr">ELIMINAR USUARIO</div>
+                      </a>
+                    </li>
+                    {% if session['rol'] == 'SUPERADMIN' %}
+                    <li class="full-width">
+                      <a href="#" class="full-width">
+                        <div class="navLateral-body-cl">
+                          <i class="zmdi zmdi-accounts-list-alt"></i>
+                        </div>
+                        <div class="navLateral-body-cr">EDITAR ROL USUARIO</div>
+                      </a>
+                    </li>
+                    {% endif %}
+                  </ul>
+                </li>
+              {% endif %}
+              <li class="full-width divider-menu-h"></li>
+              <li class="full-width">
+                <a href="#!" class="full-width btn-subMenu">
+                  <div class="navLateral-body-cl">
+                    <i class="zmdi zmdi-shopping-cart"></i>
+                  </div>
+                  <div class="navLateral-body-cr">GESTION DE PRODUCTOS</div>
+                  <span class="zmdi zmdi-chevron-left"></span>
+                </a>
+                <ul class="full-width menu-principal sub-menu-options">
+                    {% if session['rol'] != 'FINALUSER' %}
+                  <li class="full-width">
+                      <a href="#" class="full-width">
+                        <div class="navLateral-body-cl">
+                          <i class="zmdi zmdi-plus-square"></i>
+                        </div>
+                        <div class="navLateral-body-cr">CREAR PRODUCTO</div>
+                      </a>
+                    </li>
+                    {% endif %}
+                  <li class="full-width">
+                    <a href="#" class="full-width">
+                      <div class="navLateral-body-cl">
+                        <i class="zmdi zmdi-border-color"></i>
+                      </div>
+                      <div class="navLateral-body-cr">EDITAR PRODUCTO</div>
+                    </a>
+                  </li>
+                  {% if session['rol'] != 'FINALUSER' %}
+                  <li class="full-width">
+                    <a href="#" class="full-width">
+                      <div class="navLateral-body-cl">
+                        <i class="zmdi zmdi-delete"></i>
+                      </div>
+                      <div class="navLateral-body-cr">ELIMINAR PRODUCTO</div>
+                    </a>
+                  </li>
+                  {% endif %}
+                  <li class="full-width">
+                    <a href="#" class="full-width">
+                      <div class="navLateral-body-cl">
+                        <i class="zmdi zmdi-search"></i>
+                      </div>
+                      <div class="navLateral-body-cr">BUSCAR PRODUCTO</div>
+                    </a>
+                  </li>
+                  <li class="full-width">
+                    <a href="#" class="full-width">
+                      <div class="navLateral-body-cl">
+                        <i class="zmdi zmdi-trending-down"></i>
+                      </div>
+                      <div class="navLateral-body-cr">PRODUCTO CON CMR MENOR</div>
+                    </a>
+                  </li>
+                  <li class="full-width">
+                    <a href="/productosdisponibles" class="full-width">
+                      <div class="navLateral-body-cl">
+                        <i class="zmdi zmdi-check-all"></i>
+                      </div>
+                      <div class="navLateral-body-cr">PRODUCTOS DISPONIBLES</div>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              
+              <li class="full-width divider-menu-h"></li>
+              
+              <li class="full-width">
+                <a href="#!" class="full-width btn-subMenu">
+                  <div class="navLateral-body-cl">
+                    <i class="zmdi zmdi-case"></i>
+                  </div>
+                  <div class="navLateral-body-cr">GESTION DE PROVEEDORES</div>
+                  <span class="zmdi zmdi-chevron-left"></span>
+                </a>
+                <ul class="full-width menu-principal sub-menu-options">
+                  {% if session['rol'] != 'FINALUSER' %}
+                  <li class="full-width">
+                    <a href="#" class="full-width">
+                      <div class="navLateral-body-cl">
+                        <i class="zmdi zmdi-accounts-add"></i>
+                      </div>
+                      <div class="navLateral-body-cr">CREAR PROVEEDOR</div>
+                    </a>
+                  </li>
+                  {% endif %}
+                  <li class="full-width">
+                    <a href="#" class="full-width">
+                      <div class="navLateral-body-cl">
+                        <i class="zmdi zmdi-file-text"></i>
+                      </div>
+                      <div class="navLateral-body-cr">EDITAR PROVEEDOR</div>
+                    </a>
+                  </li>
+                  {% if session['rol'] != 'FINALUSER' %}
+                  <li class="full-width">
+                    <a href="#" class="full-width">
+                      <div class="navLateral-body-cl">
+                        <i class="zmdi zmdi-alert-circle-o"></i>
+                      </div>
+                      <div class="navLateral-body-cr">ELIMINAR PROVEEDOR</div>
+                    </a>
+                  </li>
+                  {% endif %}
+                  <li class="full-width">
+                    <a href="#" class="full-width">
+                      <div class="navLateral-body-cl">
+                        <i class="zmdi zmdi-search"></i>
+                      </div>
+                      <div class="navLateral-body-cr">BUSCAR PROVEEDOR</div>
+                    </a>
+                  </li>
+                  <li class="full-width">
+                    <a href="#" class="full-width">
+                      <div class="navLateral-body-cl">
+                        <i class="zmdi zmdi-search-in-file"></i>
+                      </div>
+                      <div class="navLateral-body-cr">BUSCAR POR PRODUCTO</div>
+                    </a>
+                  </li>
+                  <li class="full-width">
+                    <a href="#" class="full-width">
+                      <div class="navLateral-body-cl">
+                        <i class="zmdi zmdi-accounts-alt"></i>
+                      </div>
+                      <div class="navLateral-body-cr">VER PROVEEDORES</div>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+      </div>
+    </section>
+    <!-- pageContent -->
+    <section class="full-width pageContent">
+      <!-- navBar -->
+      <div class="full-width navBar">
+        <div class="full-width navBar-options">
+          <i class="zmdi zmdi-swap btn-menu" id="btn-menu"></i>
+          <div class="mdl-tooltip" for="btn-menu">Hide / Show MENU</div>
+          <nav class="navBar-options-list">
+            <ul class="list-unstyle">
+              <li class="btn-exit" id="btn-exit">
+                <i class="zmdi zmdi-power"></i>
+                <div class="mdl-tooltip" for="btn-exit">LogOut</div>
+              </li>
+              <li class="text-condensedLight noLink">
+                <small>{{session['email']}}</small>
+              </li>
+              <li class="noLink">
+                <figure>
+                  <img
+                    src="{{ url_for('static',filename='assets/img/avatar-male.png') }}"
+                    alt="Avatar"
+                    class="img-responsive"
+                  />
+                </figure>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <section class="full-width header-well">
+        <div class="full-width header-well-icon">
+          <i class="zmdi zmdi-home"></i>
+        </div>
+        <div class="full-width header-well-text">
+          <h2>PAGINA PRINCIPAL</h2>
+        </div>
+        
+      </section>
+      <div class="full-width divider-menu-h"></div>
+      <div class="mdl-grid">
+        <div
+          class="
+            mdl-cell
+            mdl-cell--4-col-phone
+            mdl-cell--8-col-tablet
+            mdl-cell--12-col-desktop
+          "
+        >
+          <img
+            src="{{ url_for('static',filename='assets/img/logo.jpg') }}"
+            alt="Avatar"
+            class="img-responsive"
+            style="width: 50%; height: 80%; margin-left: 280px"
+          />
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
