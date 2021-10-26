@@ -14,7 +14,15 @@ mysqldb = MySQL(app)
 
 #semilla = bcrypt.gensalt()
 
-@app.route('/', methods=['GET','POST'] )
+@app.route('/')
+def main():
+    if 'nombre' in session:
+        return redirect(url_for('dashboard'))
+    else:
+        return render_template('login.html')
+    
+    
+@app.route('/login', methods=['GET','POST'] )
 def iniciarSesion():
     return render_template('login.html')
     
