@@ -9,7 +9,7 @@ app.secret_key="BurberryGroup"
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'NOMBRE DB'
+app.config['MYSQL_DB'] = 'bgdatabase'
 mysqldb = MySQL(app)
 
 #semilla = bcrypt.gensalt()
@@ -24,7 +24,15 @@ def main():
     
 @app.route('/login', methods=['GET','POST'] )
 def iniciarSesion():
-    return render_template('login.html')
+    if request.method == 'GET':
+        if 'Usuario' in session:
+            cur = mysqldb.connection.cursor()
+            sql = "SELECT u.Idusuario, u.Usuario, u.Contraseña, FROM login u"
+            cur.execute(sql)
+            data = cur.fetchall()
+            return render_template('login.html', datas = data)
+    else:
+        return "render_template('login.html')"
     
 
 @app.route('/Registro', methods=['GET','POST'])
