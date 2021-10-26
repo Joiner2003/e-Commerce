@@ -21,22 +21,23 @@ body {
 </head>
 
 <body>
-
+  <form action="/login" method="post" id="login">
 <p><img src="../static/img/Burberry.png" width="238" height="82" alt=""/></p>
 <p><span style="text-align: center"><img src="../static/img/fondo1.jpg" width="1318" height="277" alt=""/></span></p>
 <p><em>INICIAR SESION</em></p>
 <div id="container">
   <p>Usuario <span style="text-align: center">
-  <input type="text" name="textfield" id="textfield">
+  <input type="text" name="usuario" id="usuario">
   </span></p>
 <p style="text-align: center">
   <label for="password">Contraseña</label>
-  <input type="password" name="password" id="password">
+  <input type="password" name="contraseña" id="contraseña">
 </p>
 <p >
   <span style="text-align: center">
-    <input type="button" name="button" id="button" value="INICIAR SESION">
+    <input type="submit" name="button" id="button" value="INICIAR SESION">
 </span>
+</form>
   <h5 style="font-size: 14px">¿No tienes cuenta?</h5>
   <input type="submit" name="submit" id="submit" value="REGISTRARSE">
 </p>  
