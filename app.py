@@ -17,6 +17,7 @@ mysqldb = MySQL(app)
 @app.route('/', methods=['GET','POST'] )
 def iniciarSesion():
     return render_template('login.html')
+    
 
 @app.route('/Registro', methods=['GET','POST'])
 def Registro():
