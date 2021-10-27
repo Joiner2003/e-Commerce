@@ -91,3 +91,6 @@ def EliminarProductos():
 @app.route('/Comentarios', methods=['GET', 'POST'])
 def Comentarios():
     return render_template('Comentarios.html')
+
+if __name__ == '__main__':
+    app.run(port=3000, debug=True)
