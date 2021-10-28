@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `bgdatabase` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `bgdatabase` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `bgdatabase`;
 -- MySQL dump 10.13  Distrib 8.0.25, for Win64 (x86_64)
 --
@@ -18,26 +18,29 @@ USE `bgdatabase`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `login`
+-- Table structure for table `logins`
 --
 
-DROP TABLE IF EXISTS `login`;
+DROP TABLE IF EXISTS `logins`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `login` (
+CREATE TABLE `logins` (
   `Idusuario` int NOT NULL,
   `Usuario` varchar(45) NOT NULL,
-  `Contraseña` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `Contraseña` varchar(45) NOT NULL,
+  PRIMARY KEY (`Idusuario`),
+  KEY `Id` (`Idusuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `login`
+-- Dumping data for table `logins`
 --
 
-LOCK TABLES `login` WRITE;
-/*!40000 ALTER TABLE `login` DISABLE KEYS */;
-/*!40000 ALTER TABLE `login` ENABLE KEYS */;
+LOCK TABLES `logins` WRITE;
+/*!40000 ALTER TABLE `logins` DISABLE KEYS */;
+INSERT INTO `logins` VALUES (1,'Joiner','joiner123');
+/*!40000 ALTER TABLE `logins` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -55,7 +58,7 @@ CREATE TABLE `producto` (
   `Cantidad` int NOT NULL,
   `Precio` int NOT NULL,
   PRIMARY KEY (`idProducto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -82,7 +85,7 @@ CREATE TABLE `registro` (
   `Usuario` varchar(20) NOT NULL,
   `Contraseña` varchar(50) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,6 +94,7 @@ CREATE TABLE `registro` (
 
 LOCK TABLES `registro` WRITE;
 /*!40000 ALTER TABLE `registro` DISABLE KEYS */;
+INSERT INTO `registro` VALUES ('Joiner','Escorcia',1,'joineredh@gmail.com','Joiner2003','joiner123'),('PEDRO','SCOR',232,'FFWE','JUNIO','2345'),('ANDREAS','PEDRAZA',1002548,'ANDREAS','PEDRO','456789');
 /*!40000 ALTER TABLE `registro` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -103,4 +107,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-24 23:15:55
+-- Dump completed on 2021-10-28 17:46:54
