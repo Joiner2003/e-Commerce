@@ -29,7 +29,7 @@ def iniciarSesion():
             if 'Usuario' in session:
                 return render_template('login.html')
             else:
-                return render_template('login.html')
+                return render_template('Register.html')
     else:
         #Obtener datos de ususario de base de datos
         Usuario = request.form['usuario']
@@ -62,12 +62,47 @@ def iniciarSesion():
         else:
             flash("El usuario no existe")
             print("El usuario no existe")
-            return redirect(url_for('login'))
+            return redirect(url_for('Registro'))
     
 
 @app.route('/Registro', methods=['GET','POST'])
 def Registro():
-    return render_template('Register.html')
+    if request.method == 'GET':
+        if 'Usuario' in session:
+            return render_template('login.html')
+        else:
+            return render_template('Register.html')
+    else:
+        nombre = request.form['nombre']
+       # name = nombre1 + ' ' + nombre2
+        apellido = request.form['Apellido']
+      #  apellido2 = request.form['lastName2']
+      #  lastname = apellido1 + ' ' + apellido2
+        Ide = request.form['Ide']
+        email = request.form['Email']
+      #  rol = 'FinalUser'
+        usuario = request.form['Usuario']
+        password = request.form['Contraseña']
+      #  password_encode = password.encode("utf-8")
+      #  password_encrypted = bcrypt.hashpw(password_encode, semilla)
+
+        cur = mysqldb.connection.cursor()
+        cur.execute('INSERT INTO registro (Nombre, Apellido, Id, Email, Usuario, Contraseña) VALUES (%s, %s, %s, %s, %s, %s)', (nombre.upper(), apellido.upper(), Ide.upper(), email.upper(), usuario.upper(),password.upper()))
+        mysqldb.connection.commit()
+
+#error sin resolver
+        """
+        if session['Usuario'] != None:
+            return render_template('dashboard.html')
+        else:
+            session['nombre'] = name.upper()
+            session['Apellido'] = lastname.upper()
+            session['Usuario'] = email.upper()
+           # session['rol'] = rol.upper()
+        """
+        flash('Usuario Agregado satisfactoriamente')
+        return render_template('PaginaPrincipal.html')
+
 
 @app.route('/principal', methods=['GET', 'POST'])
 def principal():

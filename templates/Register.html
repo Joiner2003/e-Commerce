@@ -30,46 +30,54 @@ body p {
 </head>
 
 <body>
+  <form method="post" action="/Registro">
 <p><img src="../static/img/Burberry.png" width="222" height="87" alt=""/><img src="../static/img/tecnologia.png" width="1225" height="300" alt=""/></p>
 <p>REGISTRARSE</p>
 <div class="container">
   <p>
-    <label for="textfield"><br>
+    <label for="nombre"><br>
     </label>
     Nombre  </p>
   <p>
-    <input type="text" name="textfield" id="textfield">
+    <input type="text" name="nombre" id="nombre" placeholder="Nombre">
   </p>
   <p>
-    <label for="textfield2">Apellido</label>
+    <label for="Apellido">Apellido</label>
   </p>
   <p>
-    <input type="text" name="textfield2" id="textfield2">
+    <input type="text" name="Apellido" id="Apellido">
   </p>
   <p>
-    <label for="textfield3"><span style="text-align: center">Número de Identificación<br>
+    <label for="Id"><span style="text-align: center">Número de Identificación<br>
       <br>
     </span></label>
     <span style="text-align: center">
-    <input type="text" name="textfield3" id="textfield3">
+    <input type="text" name="Ide" id="Ide">
   </span></p>
   <p>
-    <label for="textfield5">Email</label>
+    <label for="Email">Email</label>
   </p>
   <p>
-    <input type="text" name="textfield5" id="textfield5">
-    <label for="textfield6"><br>
-      <br>
-    Password</label>
+    <input type="text" name="Email" id="Email">
   </p>
   <p>
-    <input type="text" name="textfield6" id="textfield6">
+    <label for="Usuario"> Usuario</label> 
+  </p>
+  <p>
+    <input type="text" name="Usuario" id="Usuario">
+  </p>
+
+  <p>
+    <label for="Contraseña">Contraseña</label> 
+  </p>
+  <p>
+    <input type="password" name="Contraseña" id="Contraseña">
   </p>
   <p>
     <label for="textarea">Tipo de Usuario</label>
   </p>
   <p>
-    <textarea name="textarea" id="textarea"></textarea>
+    <textarea name="TipoU" id="TipoU"></textarea>
   </p>
   <p>
     <input type="checkbox" name="checkbox" id="checkbox">
@@ -79,7 +87,7 @@ body p {
   Declaro 	que he leido y acepto la nueva Politica de Privacidad y los Términos y Condiciones de Burberry Group.</p>
 </div>
 <p>
-  <input type="button" name="button" id="button" value="REGISTRARSE">
+  <input type="submit" name="button" id="button" value="REGISTRARSE">
 </p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -116,5 +124,6 @@ body p {
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+</form>
 </body>
 </html>
