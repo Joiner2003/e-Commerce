@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* Global Styles */
 a:hover {
-	color: rgba(255,255,255,1.00);
+	color: rgb(255, 255, 255);
 }
 /*header*/
 header {
@@ -98,6 +98,7 @@ header {
 #mainWrapper {
 	width: 80%;
 	padding-left: 10%;
+	background-color: #DEE6FC;
 }
 /*menu elements */
 .menu ul li {
