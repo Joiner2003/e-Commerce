@@ -48,19 +48,7 @@ def iniciarSesion():
             #password_encrypted_encode = Usuario[5].encode()
             #if bcrypt.checkpw(password_encrypted, password_encrypted_encode):
             return  redirect(url_for('dashboard'))
-               
-                #session['nombre'] = usuario[1]
-                #session['apellidos'] = usuario[2]
-                #session['email'] = usuario[3]
-                #session['rol'] = usuario[4]
-                #return render_template('productos.html')"""
-                
-                
-                
 
-            #else:
-             #   flash("Congtraseña incorrecta", "alert-warning")
-              #  return render_template('login.html')
         else:
             flash("El usuario no existe")
             print("El usuario no existe")
@@ -82,11 +70,12 @@ def Registro():
       #  rol = 'FinalUser'
         usuario = request.form['Usuario']
         password = request.form['Contraseña']
+        rol = request.form['roles']
         password_encode = password.encode("utf-8")
         password_encrypted = bcrypt.hashpw(password_encode, semilla)
 
         cur = mysqldb.connection.cursor()
-        cur.execute('INSERT INTO registro (Nombre, Apellido, Id, Email, Usuario, Contraseña) VALUES (%s, %s, %s, %s, %s, %s)', (nombre.upper(), apellido.upper(), Ide.upper(), email.upper(), usuario.upper(),password_encrypted,))
+        cur.execute('INSERT INTO registro (Nombre, Apellido, Id, Email, Usuario, Contraseña,Roles) VALUES (%s, %s, %s, %s, %s, %s, %s)', (nombre.upper(), apellido.upper(), Ide.upper(), email.upper(), usuario.upper(),password_encrypted,rol.upper()))
         mysqldb.connection.commit()
 
 #error sin resolver
