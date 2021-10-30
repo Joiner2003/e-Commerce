@@ -105,7 +105,29 @@ def EliminarProductos():
 
 @app.route('/Comentarios', methods=['GET', 'POST'])
 def Comentarios():
-    return render_template('Comentarios.html')
+    if request.method == 'GET':
+        cur = mysqldb.connection.cursor()
+        sql = "SELECT * FROM comentarios"
+        cur.execute(sql)
+        data = cur.fetchall()
+        return render_template('Comentarios.html',comentarios = data)
+    else:
+        titulo = request.form['titulo']
+        nombre = request.form['nombre']
+        apellido = request.form['apellido']
+        telefono = request.form['telefono']
+        email = request.form['email']
+        direccion = request.form['direccion']
+        comentario = request.form['comentario']
+        cur = mysqldb.connection.cursor()
+        cur.execute('INSERT INTO comentarios (titulo, nombre, apellido, telefono, email, direccion, comentario) VALUES (%s, %s, %s, %s, %s, %s, %s)', (titulo, nombre, apellido, telefono, email, direccion, comentario))
+        mysqldb.connection.commit()
+        cur = mysqldb.connection.cursor()
+        sql = "SELECT * FROM comentarios"
+        cur.execute(sql)
+        data = cur.fetchall()
+        flash("Comentario insertado")
+        return render_template('Comentarios.html',comentarios = data)
 
 if __name__ == '__main__':
     app.run(port=5500, debug=True)
