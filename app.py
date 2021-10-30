@@ -42,15 +42,9 @@ def iniciarSesion():
         Usuario = cur.fetchone()
         cur.close()
         
-        rol=request.form['roles']
-        cu = mysqldb.connection.cursor()
-        sql = "SELECT * FROM Registro WHERE Roles = %s"
-        cu.execute(sql,[Roles])
 
-        Roles = cu.fetchone()
-        cu.close()
        
-        if Usuario != None and Roles  == "ADMIN":
+        if Usuario != None:
             #password_encrypted_encode = Usuario[5].encode()
             #if bcrypt.checkpw(password_encrypted, password_encrypted_encode):
             return  redirect(url_for('dashboard'))
