@@ -30,6 +30,7 @@ body p {
 </head>
 
 <body>
+<center>
   <form method="post" action="/Registro">
 <p><img src="../static/img/Burberry.png" width="222" height="87" alt=""/><img src="../static/img/tecnologia.png" width="1225" height="300" alt=""/></p>
 <p>REGISTRARSE</p>
@@ -39,46 +40,47 @@ body p {
     </label>
     Nombre  </p>
   <p>
-    <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+    <input type="text" name="nombre" id="nombre" placeholder="Ingrese nombre">
   </p>
   <p>
     <label for="Apellido">Apellido</label>
   </p>
   <p>
-    <input type="text" name="Apellido" id="Apellido">
+    <input type="text" name="Apellido" id="Apellido" placeholder="Ingrese apellido">
   </p>
   <p>
     <label for="Id"><span style="text-align: center">Número de Identificación<br>
       <br>
     </span></label>
     <span style="text-align: center">
-    <input type="text" name="Ide" id="Ide">
+    <input type="number" name="Ide" id="Ide" placeholder="Ingrese Identificación ">
   </span></p>
   <p>
     <label for="Email">Email</label>
   </p>
   <p>
-    <input type="text" name="Email" id="Email">
+    <input type="email" name="Email" id="Email" placeholder="Ingrese email">
   </p>
   <p>
     <label for="Usuario"> Usuario</label> 
   </p>
   <p>
-    <input type="text" name="Usuario" id="Usuario">
+    <input type="text" name="Usuario" id="Usuario" placeholder="Ingrese usuario">
   </p>
 
   <p>
     <label for="Contraseña">Contraseña</label> 
   </p>
   <p>
-    <input type="password" name="Contraseña" id="Contraseña">
+    <input type="password" name="Contraseña" id="Contraseña" placeholder="Ingrese contraseña">
   </p>
   <p>
-    <label for="textarea">Tipo de Usuario</label>
+    <label for="roles">Tipo de Usuario</label>
   </p>
-  <p>
-    <textarea name="TipoU" id="TipoU"></textarea>
-  </p>
+  <select name="roles" id="roles" value="roles">
+    <option value="Admin" selected>Administrator</option>
+    <option value="Cliente" selected>Cliente</option>
+  </select>
   <p>
     <input type="checkbox" name="checkbox" id="checkbox">
   Me gustaria recibir comunicaciones promocionales(Recibirás un e-mail de confirmacion)</p>
@@ -89,41 +91,8 @@ body p {
 <p>
   <input type="submit" name="button" id="button" value="REGISTRARSE">
 </p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+
 </form>
+</center>
 </body>
 </html>
