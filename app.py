@@ -6,9 +6,9 @@ app = Flask(__name__)
 app.secret_key="BurberryGroup"
 
 #configuracion BaseDatos
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Valentina19'
+app.config['MYSQL_HOST'] = 'e-commerceuninorte.mysql.database.azure.com'
+app.config['MYSQL_USER'] = 'Uninorte@e-commerceuninorte'
+app.config['MYSQL_PASSWORD'] = 'Unorte2021'
 app.config['MYSQL_DB'] = 'bgdatabase'
 mysqldb = MySQL(app)
 
