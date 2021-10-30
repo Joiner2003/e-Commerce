@@ -42,7 +42,7 @@ def iniciarSesion():
         Usuario = cur.fetchone()
         cur.close()
         
-        Rol = request.form['Roles']
+        Rol = request.form['roles']
         cur = mysqldb.connection.cursor()
         sql = "SELECT * FROM Registro WHERE Roles = %s"
         cur.execute(sql,[Rol])
