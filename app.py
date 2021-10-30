@@ -2,9 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 from flask_mysqldb import MySQL
 import bcrypt
 
-
-
-
 app = Flask(__name__)
 app.secret_key="BurberryGroup"
 
@@ -28,27 +25,36 @@ def main():
 @app.route('/login', methods=['GET','POST'] )
 def iniciarSesion():
     if request.method == 'GET':
-            if 'Usuario' in session:
-                return render_template('login.html')
-            else:
-                return render_template('Register.html')
+        if 'Usuario' in session:
+            return render_template('login.html')
+        else:
+            return render_template('Register.html')
     else:
         #Obtener datos de ususario de base de datos
         Usuario = request.form['usuario']
         contraseña = request.form['contraseña']
         password_encrypted = contraseña.encode('utf8')
+        
         cur = mysqldb.connection.cursor()
-        sql = "SELECT * FROM logins WHERE Usuario = %s"
+        sql = "SELECT * FROM Registro WHERE Usuario = %s"
         cur.execute(sql,[Usuario])
-
 
         Usuario = cur.fetchone()
         cur.close()
-        if Usuario != None:
+        
+        Rol = request.form['Roles']
+        cur = mysqldb.connection.cursor()
+        sql = "SELECT * FROM Registro WHERE Roles = %s"
+        cur.execute(sql,[Rol])
+
+        Rol = cur.fetchone()
+        cur.close()
+        if Usuario != None and rol == "Admin":
             #password_encrypted_encode = Usuario[5].encode()
             #if bcrypt.checkpw(password_encrypted, password_encrypted_encode):
             return  redirect(url_for('dashboard'))
-
+        elif Usuario != None and rol == "cliente":
+            return  redirect(url_for('principal'))
         else:
             flash("El usuario no existe")
             print("El usuario no existe")
@@ -57,6 +63,8 @@ def iniciarSesion():
 
 @app.route('/Registro', methods=['GET','POST'])
 def Registro():
+    
+    
     if request.method == 'GET':
         if 'Usuario' in session:
             return render_template('login.html')
@@ -78,16 +86,7 @@ def Registro():
         cur.execute('INSERT INTO registro (Nombre, Apellido, Id, Email, Usuario, Contraseña,Roles) VALUES (%s, %s, %s, %s, %s, %s, %s)', (nombre.upper(), apellido.upper(), Ide.upper(), email.upper(), usuario.upper(),password_encrypted,rol.upper()))
         mysqldb.connection.commit()
 
-#error sin resolver
-        """
-        if session['Usuario'] != None:
-            return render_template('dashboard.html')
-        else:
-            session['nombre'] = name.upper()
-            session['Apellido'] = lastname.upper()
-            session['Usuario'] = email.upper()
-           # session['rol'] = rol.upper()
-        """
+
         flash('Usuario Agregado satisfactoriamente')
         return render_template('login.html')
 
@@ -101,7 +100,7 @@ def dashboard():
     if 'Usuario' in session:
         return render_template('dashboard.html')
     else:
-        return render_template('login.html')
+        return render_template('dashboard.html')
 
 @app.route('/ListaDeseos', methods=['GET', 'POST'])
 def ListaDeseos():
