@@ -5,7 +5,8 @@ import bcrypt
 app = Flask(__name__)
 app.secret_key="BurberryGroup"
 
-#configuracion BaseDatos
+#configuracion BaseDatos y prueba commit
+
 app.config['MYSQL_HOST'] = 'e-commerceuninorte.mysql.database.azure.com'
 app.config['MYSQL_USER'] = 'Uninorte@e-commerceuninorte'
 app.config['MYSQL_PASSWORD'] = 'Unorte2021'
